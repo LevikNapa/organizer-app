@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :lists
   root 'sessions#home'
   get '/signup' => 'users#new'
   get '/login' => 'sessions#new'
