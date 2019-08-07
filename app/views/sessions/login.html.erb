@@ -1,4 +1,7 @@
 <h1>Log in here</h1>
+<% if flash[:message] %>
+  <%= flash[:message] %>
+<% end %>
 
 <%= form_for @user, url: '/login' do |f| %>
 <br>

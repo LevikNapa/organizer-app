@@ -10,10 +10,15 @@ class UsersController < ApplicationController
     if @user.save
       #logging in user
       session[:user_id] = @user.id
-      redirect_to lists_path
+      # raise params.inspect
+      redirect_to user_path(@user)
     else
       render :new
     end
+  end
+  def show
+    @user = User.find_by(:id => params[:id])
+
   end
 
   private
