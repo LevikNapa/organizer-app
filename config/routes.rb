@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   resources :items
 
   resources :users do
-    resources :lists
+    resources :lists, only: [:index, :show]
   end
+
+  resources :lists, only: [:index, :show, :new, :create, :edit, :update]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

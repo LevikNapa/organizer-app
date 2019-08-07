@@ -1,8 +1,11 @@
-<h1>Make a list</h1>
+<h1>Create a list!</h1>
 
 
 <%= form_for(@list) do |f| %>
 <br>
+
+<%= render partial: 'layouts/errors', locals: {object: @list} %>
+
 <%= f.label :title %>
 <%= f.text_field :title %>
 <br>
