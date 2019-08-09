@@ -3,7 +3,7 @@
   <%= flash[:message] %>
 <% end %>
 
-<%= form_for @user, url: '/login' do |f| %>
+<%= form_for(:user) do |f| %>
 <br>
 <%= f.label :username %>
 <%= f.text_field :username %>
@@ -13,3 +13,5 @@
 
 <%= f.submit "Log in" %>
 <% end  %>
+<br>
+<%= link_to "Login via GitHub", '/auth/github' %>

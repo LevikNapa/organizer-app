@@ -2,16 +2,31 @@
 
 
 <%= form_for(@list) do |f| %>
-<br>
 
 <%= render partial: 'layouts/errors', locals: {object: @list} %>
 
+<div>
 <%= f.label :title %>
 <%= f.text_field :title %>
-<br>
+</div>
+
+<div>
 <%= f.label :date %>
-<%= f.date_field :date%>
-<br>
+<%= f.date_select :date%>
+</div>
+
+<p>Select item</p>
+
+<div>
+ <%= f.collection_select :item_ids, Item.all, :id, :description %>
+</div>
+<p>Add Item</p>
+<div>
+  <%= f.fields_for :item do |i| %>
+    <%= i.label :description %>
+    <%= i.text_field :description %>
+  <% end %>
+</div>
 
 <%= f.submit "Create List" %>
 
