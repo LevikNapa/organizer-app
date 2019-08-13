@@ -1,0 +1,7 @@
+<h1>All content</h1>
+<ol>
+
+<% @list_items.each do |list_item| %>
+  <li><%= list_item.list.title %>: <%= list_item.content  %></li> <br>
+<% end %>
+</ol>

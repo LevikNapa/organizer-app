@@ -1,4 +1,9 @@
-<% @lists.each do |list| %>
-<%= list.title %>
-<%= list.date %>
-<% end %>
+
+<ol>
+  <% @lists.each do |list| %>
+    <li><%= list.title%>
+    <br>
+    <%= list.date%></li>
+    <%= link_to "Add content", new_list_list_item_path(list.id ) %>
+  <% end %>
+</ol>
