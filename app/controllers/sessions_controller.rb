@@ -22,14 +22,9 @@ class SessionsController < ApplicationController
 
 
   def ghcreate  #omniauth login
-    @user = User.find_or_create_by(uid: auth['uid']) do |u|
-      u.username = auth['info']['nickname']
-      u.email = auth['info']['email']
-      u.password = SecureRandom.hex
-    end
-
+    @user = User.from_omniauth(auth)
     session[:user_id] = @user.id
-
+    # binding.pry
     redirect_to user_path(@user)
   end
 

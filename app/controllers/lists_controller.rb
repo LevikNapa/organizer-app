@@ -7,7 +7,7 @@ class ListsController < ApplicationController
   end
   def create
     @list = current_user.lists.build(list_params)
-    # raise params.inspect
+    raise params.inspect
     if @list.save
        redirect_to list_path(@list)
     else
