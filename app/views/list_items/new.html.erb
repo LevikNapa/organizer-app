@@ -1,6 +1,8 @@
 <h1>Add Content for <%= @list_item.list.title %></h1>
 
 <%= form_for(@list_item) do |f| %>
+
+<%= render partial: 'layouts/errors', locals: {object: @list_item} %>
 <br>
 
 <div>

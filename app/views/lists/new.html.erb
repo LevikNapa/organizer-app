@@ -22,7 +22,7 @@
 </div>
 <p>Add Item</p>
 <div>
-  <%= f.fields_for :item do |i| %>
+  <%= f.fields_for :items do |i| %>
     <%= i.label :description %>
     <%= i.text_field :description %>
   <% end %>
