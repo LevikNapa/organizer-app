@@ -18,13 +18,23 @@
 <p>Select item</p>
 
 <div>
- <%= f.collection_select :item_ids, Item.all, :id, :description %>
+ <%= f.collection_select :item_ids, Item.all.alpha, :id, :description, include_blank: true %>
 </div>
 <p>Add Item</p>
+
 <div>
   <%= f.fields_for :items do |i| %>
     <%= i.label :description %>
     <%= i.text_field :description %>
+  <% end %>
+</div>
+
+<p>Add Content</p>
+
+<div>
+  <%= f.fields_for :list_items do |li| %>
+    <%= li.label :content %>
+    <%= li.text_area :content %>
   <% end %>
 </div>
 

@@ -5,8 +5,8 @@ class ListItemsController < ApplicationController
   end
 
   def create
-   @list_item = ListItem.new(list_item_params)
-   @list_item.build_item
+    @list_item = ListItem.new(list_item_params)
+    @list_item.build_item
    if @list_item.save
      #figure out how to set sessions when @list_item doesn't have a user_id
      redirect_to list_item_path(@list_item)

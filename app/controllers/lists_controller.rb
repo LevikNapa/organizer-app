@@ -7,7 +7,6 @@ class ListsController < ApplicationController
   end
   def create
     @list = current_user.lists.build(list_params)
-    raise params.inspect
     if @list.save
        redirect_to list_path(@list)
     else
@@ -16,7 +15,7 @@ class ListsController < ApplicationController
   end
 
   def index
-    @lists = List.all
+    @lists = List.order_by_date
   end
 
   def show

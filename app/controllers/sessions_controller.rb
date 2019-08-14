@@ -5,19 +5,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # if
-    #  @user = User.find_or_create_by_omniauth(auth)
-    #  session[:user_id] = @user.id
-    #  redirect_to user_path(@user)
-     # tried to redirect_to user_path(@user) but got an error that its missing and id. Could't identify the issue.
-     @user = User.find_by(:username => params[:user][:username])
-      if @user && @user.authenticate(params[:user][:password])
-      session[:user_id] = @user.id
-      redirect_to user_path(@user)
-      else
-      flash[:message] = "Sorry, please try again"
-      redirect_to '/login'
-    end
+      @user = User.find_by(:username => params[:user][:username])
+     if @user && @user.authenticate(params[:user][:password])
+        session[:user_id] = @user.id
+        redirect_to user_path(@user)
+     else
+        flash[:message] = "Sorry, please try again"
+        redirect_to '/login'
+     end
   end
 
 
