@@ -1,2 +1,16 @@
-<h1>one list</h1>
-<%= @list.title %>
+<h1><%= @list.user.username%></h1>
+
+<h2><%= @list.title %> list</h2>
+
+<p><% @list.items.each do |item| %>
+     <%= item.description %>
+   <% end  %>
+</p>
+
+<div>
+  <% @list.list_items.each do |li| %>
+    <%= li.content %>
+  <% end  %>
+</div>
+<p> <%= link_to 'See all the content', list_list_items_path(@list) %></p>
+<p> <%= link_to 'Add content', new_list_list_item_path(@list) %></p>

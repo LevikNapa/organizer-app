@@ -1,6 +1,10 @@
-<h1>Add Content for <%= @list_item.list.title %></h1>
+<% if @list  %>
+<h1>Add Content for <%= @list.title %>!</h1>
+<% else %>
+<h1>Add Content!</h1>
+<% end  %>
 
-<%= form_for(@list_item) do |f| %>
+<%= form_for([@list,@list_item]) do |f| %>
 
 <%= render partial: 'layouts/errors', locals: {object: @list_item} %>
 <br>
@@ -9,6 +13,7 @@
  <%= f.label :content %>
  <%= f.text_area :content, size: "25x5" %>
 </div>
+
 <%= f.hidden_field :list_id %>
 
 <%= f.submit %>

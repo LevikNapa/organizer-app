@@ -6,37 +6,29 @@
 <%= render partial: 'layouts/errors', locals: {object: @list} %>
 
 <div>
-<%= f.label :title %>
-<%= f.text_field :title %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
 </div>
 
 <div>
-<%= f.label :date %>
-<%= f.date_select :date%>
+  <%= f.label :date %>
+  <%= f.date_select :date %>
 </div>
 
-<p>Select item</p>
+<h3>Add Items</h3>
 
 <div>
- <%= f.collection_select :item_ids, Item.all.alpha, :id, :description, include_blank: true %>
-</div>
-<p>Add Item</p>
+    <%= f.fields_for :items, 5.times {@list.items.build}  do |item_fields| %>
+       <%= item_fields.text_field :description, placeholder: "Add your item here" %><br><br>
 
-<div>
-  <%= f.fields_for :items do |i| %>
-    <%= i.label :description %>
-    <%= i.text_field :description %>
-  <% end %>
+          <h4>Add Content</h4>
+
+        <%= item_fields.fields_for :list_items do |li| %>
+           <%= li.text_area :content, placeholder: "Add your content here" %>
+        <% end %>
+    <% end %>
 </div>
 
-<p>Add Content</p>
-
-<div>
-  <%= f.fields_for :list_items do |li| %>
-    <%= li.label :content %>
-    <%= li.text_area :content %>
-  <% end %>
-</div>
 
 <%= f.submit "Create List" %>
 

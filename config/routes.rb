@@ -9,10 +9,12 @@ Rails.application.routes.draw do
   resources :items
   resources :list_items
 
-  resources :users
+  resources :users do
+    resources :lists, only: [:new, :create, :index]
+  end
 
   resources :lists do
-    resources :list_items, only: [:new, :index]
+    resources :list_items, only: [:new, :create, :index]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

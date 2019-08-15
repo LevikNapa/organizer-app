@@ -1,7 +1,11 @@
 class ListItemsController < ApplicationController
   def new
-    @list = List.find_by_id(params[:list_id])
-    @list_item = @list.list_items.build
+    if params[:list_id] && @list = List.find_by_id(params[:list_id])
+      @list_items = @list.list_items.build
+    else
+      @error = "That list doesn't exist" if params[:list_id]
+      @list_item = ListItem.new
+    end
   end
 
   def create
@@ -20,9 +24,10 @@ class ListItemsController < ApplicationController
   end
 
   def index
-    if @list = List.find_by_id(params[:list_id])
+    if params[:list_id] && @list = List.find_by_id(params[:list_id])
       @list_items = @list.list_items
     else
+      @error = "That list doesn't exist" if params[:list_id]
       @list_items = ListItem.all
     end
   end

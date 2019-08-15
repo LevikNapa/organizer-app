@@ -3,10 +3,13 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
-    @list.items.build
+    @items = @list.items
   end
+
   def create
-    @list = current_user.lists.build(list_params)
+    # binding.pry
+    @list = List.new(list_params)
+    @list.user = current_user
     if @list.save
        redirect_to list_path(@list)
     else
@@ -19,16 +22,15 @@ class ListsController < ApplicationController
   end
 
   def show
-
-    @list = List.find(params[:id])
+    @list = List.find_by_id(params[:id])
     if !@list
-      redirect_to list_path
+      redirect_to lists_path
     end
   end
 
   private
 
   def list_params
-    params.require(:list).permit(:title, :date, :user_id, :item_ids, item_attributes: [:description])
+    params.require(:list).permit(:title, :date, items_attributes: [:id, :description, list_items_attributes: [:id, :content]])
   end
 end

@@ -26,12 +26,12 @@ Specs:
    Added AR validations to my models and added a custom validations as well.
 
  [x]Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
- 
+
    Added scope methods to to display the order items alphabetically, and lists according to most recent date.
 
  [x]Include signup (how e.g. Devise)
  [x]Include login (how e.g. Devise)
- [x] Include logout (how e.g. Devise)
+ [x]Include logout (how e.g. Devise)
  [x]Include third party signup/login (how e.g. Devise/OmniAuth) - I used GitHub
 
  []Include nested resource show or index (URL e.g. users/2/recipes)
