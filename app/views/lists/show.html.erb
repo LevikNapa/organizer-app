@@ -2,15 +2,16 @@
 
 <h2><%= @list.title %> list</h2>
 
-<p><% @list.items.each do |item| %>
-     <%= item.description %>
+<ol>
+<h3><% @list.items.each do |item| %>
+     <li><%= item.description %></li>
    <% end  %>
-</p>
-
-<div>
+</h3></ol>
+<ul>
+<div><strong>
   <% @list.list_items.each do |li| %>
-    <%= li.content %>
+    <li><%= li.content %></li><br>
   <% end  %>
-</div>
+</strong></div></ul>
 <p> <%= link_to 'See all the content', list_list_items_path(@list) %></p>
 <p> <%= link_to 'Add content', new_list_list_item_path(@list) %></p>

@@ -31,6 +31,7 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'dotenv-rails'
 gem 'nested_form_fields'
+gem "cocoon"
 
 
 # Use ActiveStorage variant

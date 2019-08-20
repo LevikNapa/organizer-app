@@ -18,14 +18,11 @@
 <h3>Add Items</h3>
 
 <div>
-    <%= f.fields_for :items, 5.times {@list.items.build}  do |item_fields| %>
+    <%= f.fields_for :items do |item_fields| %>
        <%= item_fields.text_field :description, placeholder: "Add your item here" %><br><br>
-
-          <h4>Add Content</h4>
-
-        <%= item_fields.fields_for :list_items do |li| %>
-           <%= li.text_area :content, placeholder: "Add your content here" %>
-        <% end %>
+     <%= item_fields.fields_for :list_items do |li| %>
+        <%= li.text_area :content, placeholder: "Add your content here" %><br>
+      <% end %>
     <% end %>
 </div>
 

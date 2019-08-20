@@ -3,7 +3,8 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
-    @items = @list.items
+    @items = @list.items.build
+    @items.list_items.build
   end
 
   def create
