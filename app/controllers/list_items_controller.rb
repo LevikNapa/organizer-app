@@ -1,9 +1,8 @@
 class ListItemsController < ApplicationController
   def new
     if params[:list_id] && @list = List.find_by_id(params[:list_id])
-      @list_items = @list.list_items.build
+      @list_item = @list.list_items.build
     else
-      @error = "That list doesn't exist" if params[:list_id]
       @list_item = ListItem.new
     end
   end
@@ -21,13 +20,15 @@ class ListItemsController < ApplicationController
 
   def show
     set_list_item
+    # binding.pry
   end
 
   def index
-    if params[:list_id] && @list = List.find_by_id(params[:list_id])
+    if @list = List.find_by_id(params[:list_id])
       @list_items = @list.list_items
     else
       @error = "That list doesn't exist" if params[:list_id]
+      # binding.pry
       @list_items = ListItem.all
     end
   end

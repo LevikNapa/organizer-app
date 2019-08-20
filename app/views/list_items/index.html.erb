@@ -1,7 +1,11 @@
-<h1>All content</h1>
-<ol>
+<% if @list %>
+  <h1>Content for <%= @list.title%></h1>
+<% else %>
+  <h1>All content</h1>
+<% end %>
 
+<ol>
 <% @list_items.each do |list_item| %>
-  <li><%= list_item.list.title %>: <%= list_item.content  %></li> <br>
+  <li> <%= list_item.content  %></li> <br>
 <% end %>
 </ol>
