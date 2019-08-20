@@ -20,7 +20,20 @@ class ListItemsController < ApplicationController
 
   def show
     set_list_item
-    # binding.pry
+  end
+
+  def edit
+    set_list_item
+  end
+
+  def update
+    set_list_item
+    @list_item.build_item
+    if @list_item.update(list_item_params)
+      redirect_to list_item_path(@list_item)
+    else
+      render :edit
+    end
   end
 
   def index
@@ -31,6 +44,12 @@ class ListItemsController < ApplicationController
       # binding.pry
       @list_items = ListItem.all
     end
+  end
+
+  def destroy
+   set_list_item
+   @list_item.destroy
+   redirect_to list_items_path
   end
 
   private

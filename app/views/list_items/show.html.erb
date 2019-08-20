@@ -3,3 +3,5 @@
 <h3>List's content: <%= @list_item.content %></h3>
 
 <%= link_to "All Content", '/lists/:id/list_items'%>
+<%= link_to "Edit Content", edit_list_list_item_path(@list_item)%>
+<%= link_to "Delete Content", list_list_item_path(@list_item), method: :delete  %>

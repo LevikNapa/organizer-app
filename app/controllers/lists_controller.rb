@@ -23,13 +23,18 @@ class ListsController < ApplicationController
   end
 
   def show
+    set_list
+    @user = current_user
+  end
+
+  private
+
+  def set_list
     @list = List.find_by_id(params[:id])
     if !@list
       redirect_to lists_path
     end
   end
-
-  private
 
   def list_params
     params.require(:list).permit(:title, :date, items_attributes: [:id, :description, list_items_attributes: [:id, :content]])
