@@ -1,7 +1,6 @@
-<h1>Welcome <%=@user.username%></h1>
+<h1> <%= @user.username %></h1>
 <h3><ul><% @user.lists.each do |list| %>
           <li><%= link_to list.title, list_path(list) %></li>
         <% end %>
    </ul>
 </h3>
-<h4> Click <%= link_to "here", '/users/most_lists'  %> to see the User with the most lists.</h4>

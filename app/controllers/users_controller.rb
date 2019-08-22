@@ -17,9 +17,14 @@ class UsersController < ApplicationController
     end
   end
   def show
-    check_for_logged_in    
+    check_for_logged_in
     @user = User.find_by_id(params[:id])
     redirect_to '/' if !@user
+  end
+
+  def most_lists
+    @user = User.user_most_lists.first
+    render :most_lists
   end
 
   private

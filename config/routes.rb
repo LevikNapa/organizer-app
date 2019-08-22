@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
   get '/auth/:provider/callback', to: 'sessions#ghcreate'
 
+  get '/users/most_lists' => 'users#most_lists'
+
   resources :items
   resources :list_items
 

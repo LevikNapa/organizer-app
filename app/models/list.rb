@@ -37,17 +37,6 @@ class List < ApplicationRecord
     end
   end
 
-
-
-
-  # def list_items_attributes=(list_item_attributes)
-  #    list_item_attributes.values.each do |list_item_attribute|
-  #      binding.pry
-  #     list_item = ListItem.find_or_create_by(list_item_attribute)
-  #     self.list_items << list_item
-  #   end
-  # end
-
   def not_a_duplicate
     if !!List.find_by(title: title, date: date)
       errors.add(:title, "for your list has already been selected")

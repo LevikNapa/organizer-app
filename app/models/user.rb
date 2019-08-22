@@ -4,6 +4,8 @@ class User < ApplicationRecord
   validates :username, presence: true
   validates :username, :email, uniqueness: true
 
+  scope :user_most_lists, -> { User.joins(:lists).group(:id).order("count(lists.user_id) desc") }
+
 
   def self.from_omniauth(auth)
        self.where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |u|
