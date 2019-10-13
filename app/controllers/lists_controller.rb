@@ -19,7 +19,11 @@ class ListsController < ApplicationController
   end
 
   def index
-    @lists = List.order_by_date
+    @lists = List.all
+		respond_to do |f|
+			f.html {render :index}
+			f.json {render json: @lists}
+		end
   end
 
   def show
