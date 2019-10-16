@@ -8,14 +8,16 @@ class ListsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @list = List.new(list_params)
     @list.user = current_user
-    if @list.save
-       redirect_to list_path(@list)
-    else
-      render :new
-    end
+		if @list.save
+			respond_to do |f|
+				f.html {redirect_to lists_path}
+				f.json {render json: @list}
+			end
+		else
+			render :new
+		end
   end
 
   def index
@@ -29,6 +31,10 @@ class ListsController < ApplicationController
   def show
     set_list
     @user = current_user
+		respond_to do |f|
+			f.html {render :show}
+			f.json {render json: @list }
+		end
   end
 
   private
