@@ -13,15 +13,14 @@ function listenForClick() {
 
 function getLists() {
 	$.ajax({
-		url: 'http://localhost:3000/lists',
+		url: 'http://localhost:3000/lists.json',
 		method: 'get',
-		dataType: 'json',
-		success: function (data) {
+		data: 'json',
+		success: function(data) {
 			console.log("the data is: ", data) //need to learn how to process the data i retrieved from the api call so its not undefined.
-			data.forEach(list => {
-				const newlist = new List(list)
-				const newListHtml = newlist.listHTML()
-				document.getElementById('js-lists').innerHTML = newListHtml
+			data.forEach(function(list) {
+				let newlist = new List(list)
+        newlist.listHTML()
 			})
 		}
 	})
@@ -35,10 +34,12 @@ function listenForNewListFormClick() {
 	})
 }
 
+
 class List {
-	constructor(id, title) {
-		this.id = id
-		this.title = title
+	constructor(obj) {
+		this.id = obj.id
+		this.title = obj.title
+		this.items = obj.list_items
 	}
 
   static newListForm() {
@@ -52,16 +53,22 @@ class List {
  }
 }
 
-List.prototype.listHTML = function () {
-	// (list => {
-	// 	return (`
-	// 		<p>${this.title}</p>
-	// 	`)
-	// })
+function createLi(items) {
+	return `<li>${items.content} </li>`
 
-	return (`
+}
+
+List.prototype.listHTML = function() {
+
+	let html = `
 		<div class='list'>
 			<h3>${this.title}</h3>
-		</div>
-	`)
+			<ul>
+			   ${this.items.forEach(function(item) {
+             createLi(item)
+				 })}
+			</ul>
+		</div>	`
+
+	$('#js-lists').append(html)
  }
