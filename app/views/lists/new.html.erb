@@ -48,7 +48,7 @@
     // TODO: handle response
         var list = data;
         $("#listTitle").text(list["title"]);
-        $("#listBody").text(list["description"]);
+        $("#listBody").text(list.list_items[0].content);
 
       });
     });
