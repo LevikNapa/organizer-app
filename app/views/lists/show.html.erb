@@ -16,4 +16,24 @@
 </strong></div></ul>
 <p> <%= link_to 'See all the content', list_list_items_path(@list) %></p>
 <p> <%= link_to 'Add content', new_list_list_item_path(@list) %></p>
-<p> <%= link_to "Home", user_path(@user) %> </p>
+<!-- <p>  link_to "Home", user_path(@user) %> </p> -->
+
+<h1 class="listTitle">Ajax <%= @list.title %></h1>
+<p class="listBody"><%= @list.list_items[0].content %></p>
+<a href="#" class="js-next" data-id="<%=@list.id%>">Next...</a>
+
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-next").on("click", function(e) {
+   e.preventDefault();
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.getJSON("/lists/" + nextId + ".json", function(data) {
+      $(".listTitle").text(data["title"]);
+      $(".listBody").text(data.list_items[0].content);
+      // re-set the id to current on the link
+      $(".js-next").attr("data-id", data["id"]);
+    });
+  });
+});
+</script>
