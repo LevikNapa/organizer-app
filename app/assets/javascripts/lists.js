@@ -1,11 +1,11 @@
 $(function () {
-	console.log('posts.js is loaded ...')
+	console.log('lists.js is loaded ...')
 	listenForClick()
 	listenForNewListFormClick()
 });
 
 function listenForClick() {
-	$('button#lists-data').on('click', function (event) {
+	$('button#lists-data').on('click', function(event) {
 		event.preventDefault()
 		getLists()
 	})
@@ -17,9 +17,10 @@ function getLists() {
 		method: 'get',
 		data: 'json',
 		success: function(data) {
-			console.log("the data is: ", data) //need to learn how to process the data i retrieved from the api call so its not undefined.
+			// console.log("the data is: ", data) //need to learn how to process the data i retrieved from the api call so its not undefined.
+      $(".list").remove()
 			data.forEach(function(list) {
-				let newlist = new List(list)
+				var newlist = new List(list)
         newlist.listHTML()
 			})
 		}
@@ -34,18 +35,35 @@ function listenForNewListFormClick() {
 	})
 }
 
+// $("#new_list").on("submit", function(event){
+// 	 event.preventDefault()
+// 	 $.ajax({
+// 		 method: "POST",
+// 		 url: this.action
+// 		 data: 'json',
+// 		 success: function(data){
+// 			 console.log('works')
+//
+// 			 var list = new List(data)
+// 			 $('#list-div').append(list)
+//
+//
+// 		 }
+// 	 })
+//  })
+
 
 class List {
 	constructor(obj) {
 		this.id = obj.id
 		this.title = obj.title
-		this.items = obj.list_items
+		this.list_items = obj.list_items
 	}
 
   static newListForm() {
   return (`
   <strong>New list form</strong>
-    <form>
+    <form id='list-form'>
       <input id='list-title' type='text' name='title'></input><br>
       <input type='submit' />
     </form>
@@ -53,21 +71,21 @@ class List {
  }
 }
 
-function createLi(items) {
-	return `<li>${items.content} </li>`
+function createLi(list_items) {
+    `<li>${list_items.content} </li>`
 
 }
 
 List.prototype.listHTML = function() {
 
-	let html = `
+	var html = `
 		<div class='list'>
 			<h3>${this.title}</h3>
 			<ul>
-			   ${this.items.forEach(function(item) {
-             createLi(item)
+			   ${this.list_items.forEach(function(item) {
+             $('.list ul').append('<li>' + item.content + '</li>')
 				 })}
-			</ul>
+				 </ul>
 		</div>	`
 
 	$('#js-lists').append(html)
