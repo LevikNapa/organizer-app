@@ -30,3 +30,27 @@
 <%= f.submit "Create List" %>
 
 <% end %>
+
+<div id="Result">
+  <h2 id="listTitle"></h2>
+  <p id="listBody"></p>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+
+      var values = $(this).serialize();
+      var posting = $.post('/lists', values);
+      posting.done(function(data) {
+    // TODO: handle response
+        var list = data;
+        $("#listTitle").text(list["title"]);
+        $("#listBody").text(list["description"]);
+
+      });
+    });
+  });
+</script>
