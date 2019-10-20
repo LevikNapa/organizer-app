@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-    before_action :check_for_logged_in, except: [:index]
+    # before_action :check_for_logged_in, except: [:index]
 
   def new
     @list = List.new
@@ -8,16 +8,9 @@ class ListsController < ApplicationController
   end
 
   def create
+    # binding.pry
     @list = List.new(list_params)
-    @list.user = current_user
-		if @list.save
-			respond_to do |f|
-				f.html {redirect_to lists_path}
-				f.json {render json: @list}
-			end
-		else
-			render :new
-		end
+    render json: @list
   end
 
   def index
@@ -30,11 +23,10 @@ class ListsController < ApplicationController
 
   def show
     set_list
-    @user = current_user
-		respond_to do |f|
-			f.html {render :show}
-			f.json {render json: @list }
-		end
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @list }
+    end
   end
 
   private
