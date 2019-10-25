@@ -1,6 +1,6 @@
 <h1><%= @list.user.username%></h1>
 
-<h2><%= @list.title %> list</h2>
+<h2>Rails <%= @list.title %> list</h2>
 
 <ol>
 <h3><% @list.items.each do |item| %>
@@ -20,7 +20,8 @@
 
 <h1 class="listTitle">Ajax <%= @list.title %></h1>
 <p class="listBody"><%= @list.list_items[0].content %></p>
-<a href="#" class="js-next" data-id="<%=@list.id%>">Next...</a>
+<a href="#" class="js-back" data-id="<%=@list.id%>">Back</a><br>
+<a href="#" class="js-next" data-id="<%=@list.id%>">Next</a>
 
 
 <script type="text/javascript" charset="utf-8">
@@ -33,6 +34,21 @@ $(function () {
       $(".listBody").text(data.list_items[0].content);
       // re-set the id to current on the link
       $(".js-next").attr("data-id", data["id"]);
+    });
+  });
+});
+</script>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-back").on("click", function(e) {
+   e.preventDefault();
+    var nextId = parseInt($(".js-back").attr("data-id")) - 1;
+    $.getJSON("/lists/" + nextId + ".json", function(data) {
+      $(".listTitle").text(data["title"]);
+      $(".listBody").text(data.list_items[0].content);
+      // re-set the id to current on the link
+      $(".js-back").attr("data-id", data["id"]);
     });
   });
 });

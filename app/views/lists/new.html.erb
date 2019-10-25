@@ -39,17 +39,15 @@
 <script type="text/javascript" charset="utf-8">
   $(function () {
     $('form').submit(function(event) {
-      //prevent form from submitting the default way
       event.preventDefault();
-
       var values = $(this).serialize();
       var posting = $.post('/lists', values);
       posting.done(function(data) {
     // TODO: handle response
         var list = data;
-        $("#listTitle").text(list["title"]);
-        $("#listBody").text(list.list_items[0].content);
-
+        $("#listTitle").append(list["title"]);
+        $("#listBody").append(list.list_items[0].content);
+        // event.preventDefault();
       });
     });
   });
