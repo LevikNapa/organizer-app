@@ -1,7 +1,7 @@
 $(function () {
 	console.log('lists.js is loaded ...')
 	listenForClick()
-	listenForNewListFormClick()
+	// listenForNewListFormClick()
 });
 
 function listenForClick() {
@@ -27,13 +27,13 @@ function getLists() {
 	})
 }
 
-function listenForNewListFormClick() {
-	$('button#js-new-list').on('click', function (event) {
-		event.preventDefault()
-		let newListForm = List.newListForm()
-		document.querySelector('div#new-list-form-div').innerHTML = newListForm
-	})
-}
+// function listenForNewListFormClick() {
+// 	$('button#js-new-list').on('click', function (event) {
+// 		event.preventDefault()
+// 		let newListForm = List.newListForm()
+// 		document.querySelector('div#new-list-form-div').innerHTML = newListForm
+// 	})
+// }
 
 // $("#new_list").on("submit", function(event){
 // 	 event.preventDefault()
