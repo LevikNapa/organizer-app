@@ -8,9 +8,12 @@ class ListsController < ApplicationController
   end
 
   def create
-    # binding.pry
-    @list = List.new(list_params)
-    render json: @list
+
+     @list = List.new(list_params)
+     @list.user = current_user
+     # binding.pry
+     @list.save
+     render json: @list
   end
 
   def index
