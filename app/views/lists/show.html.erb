@@ -1,4 +1,20 @@
 <h1><%= @list.user.username%></h1>
+<button type="button" name="button">Click ME!</button>
+<div class="">
+ <span id="number">0</span>
+</div>
+<script type="text/javascript"> 
+  $(function () {
+     $('button').on("click", function(event) {
+       event.preventDefault()
+       let counter = $('#number').text()
+       let increment = parseInt(counter, 10) + 1
+       $('#number').text(increment)
+     })
+  })
+
+
+</script>
 
 <h2>Rails <%= @list.title %> list</h2>
 
